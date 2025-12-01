@@ -16,6 +16,8 @@ import os
 
 # Constantes
 RANDOM_STATE = 42
+RISCO_ALTO_THRESHOLD = 0.7
+RISCO_MEDIO_THRESHOLD = 0.4
 
 # Lista de features originais (antes do encoding)
 ORIGINAL_FEATURES = [
@@ -152,13 +154,20 @@ def prever_churn(dados_cliente: dict, modelo=None, feature_names: list = None):
     predicao, probabilidades = fazer_predicao(modelo, dados_prep)
 
     # Preparar resultado
+    prob_churn = float(probabilidades[0][1])
+    if prob_churn > RISCO_ALTO_THRESHOLD:
+        nivel_risco = 'ALTO'
+    elif prob_churn > RISCO_MEDIO_THRESHOLD:
+        nivel_risco = 'MÉDIO'
+    else:
+        nivel_risco = 'BAIXO'
+
     resultado = {
         'predicao': 'CHURN' if predicao[0] == 1 else 'NÃO CHURN',
         'codigo_predicao': int(predicao[0]),
         'probabilidade_nao_churn': float(probabilidades[0][0]),
-        'probabilidade_churn': float(probabilidades[0][1]),
-        'risco': 'ALTO' if probabilidades[0][1] > 0.7 else 
-                 'MÉDIO' if probabilidades[0][1] > 0.4 else 'BAIXO'
+        'probabilidade_churn': prob_churn,
+        'risco': nivel_risco
     }
 
     return resultado
