@@ -1,167 +1,136 @@
-# 📊 Trabalho Final - Ciência de Dados N3
+# 📊 Projeto N3 - Predição de Churn de Clientes Telco
 
-## 📋 Informações Gerais
+## 🎯 Sobre o Projeto
 
-- **Modalidade**: Avaliação em dupla ou trio
-- **Entrega**: Via MS Teams
-- **Data Limite**: 01 de dezembro de 2025, até 23h59min
-- ⚠️ **Penalidade**: 1,0 ponto de desconto a cada hora de atraso
+Este projeto apresenta uma solução completa de **Machine Learning para predição de Churn** (cancelamento de serviços) em uma empresa de telecomunicações. O objetivo é identificar clientes com alta probabilidade de cancelar seus serviços, permitindo ações preventivas de retenção.
 
----
+### Problema de Negócio
 
-## 🎯 Objetivo do Trabalho
+> **"Quais fatores têm maior impacto na decisão de um cliente cancelar o serviço de telecomunicações?"**
 
-Consolidar o aprendizado aplicando o **ciclo completo de um projeto de dados**, desde a concepção do problema até a "entrega" de um modelo funcional.
-
-Este trabalho retoma o projeto original iniciado no começo do semestre (avaliação N1), onde cada grupo definiu um domínio de problema e escolheu um dataset. O foco desta avaliação será demonstrar a **construção de um modelo preditivo** (classificação ou regressão), justificando cada etapa do processo.
-
-### 💡 Dica Importante
-Compare os trabalhos da N1 com o trabalho guiado da N2. É possível que a pergunta de negócio original não seja adequada para Ciência de Dados e precise ser ajustada ou até completamente alterada.
+O setor de telecomunicações é altamente competitivo, e a retenção de clientes é fundamental:
+- Conquistar um novo cliente custa **5 a 25 vezes mais** do que manter um existente
+- O **churn** impacta diretamente a receita recorrente da empresa
+- Identificar clientes em risco permite **ações proativas de retenção**
 
 ---
 
 ## 📁 Estrutura do Repositório
 
-O trabalho deve ser entregue como um **link para repositório no GitHub** com a seguinte estrutura:
-
 ```
 📦 CienciaDeDadosN3/
-├── 📄 README.md                # O "rosto" do projeto - explica problema, estrutura e execução
-├── 📁 notebooks/               # Jupyter Notebooks de exploração e modelagem
-├── 📁 data/                    # Dataset(s) utilizado(s)
-├── 📁 scripts/                 # Scripts de deploy ou funções auxiliares
-├── 📄 requirements.txt         # Arquivo de dependências Python
-└── 📄 modelo_final.pkl         # Modelo treinado e salvo
+├── 📄 README.md                    # Documentação do projeto
+├── 📄 requirements.txt             # Dependências Python
+├── 📄 modelo_final.pkl             # Modelo treinado e salvo
+├── 📁 notebooks/
+│   └── 01_projeto_telco_churn.ipynb  # Notebook completo do projeto
+├── 📁 data/
+│   └── WA_Fn-UseC_-Telco-Customer-Churn.csv  # Dataset
+├── 📁 scripts/
+│   └── deploy_model.py             # Script de deploy do modelo
+├── 📁 datasets/                    # Dataset original (backup)
+└── 📁 atividades/                  # Atividades de referência
 ```
 
 ---
 
-## 📊 Estrutura do Trabalho e Critérios de Avaliação
+## 📊 Resultados Obtidos
 
-### **Parte 1: A Fundação do Projeto - O Problema de Negócio** (1,0 ponto)
+### Modelos Treinados
 
-Contextualize o projeto contando a história que motivou seu trabalho.
+| Modelo | Accuracy | Precision | Recall |
+|--------|----------|-----------|--------|
+| Decision Tree | ~78% | ~65% | ~50% |
+| Random Forest | ~80% | ~68% | ~48% |
+| **Logistic Regression** | ~80% | ~66% | ~55% |
 
-#### 1.1. Apresente o Domínio do Problema
-Descreva o cenário e contexto do problema escolhido. Por que ele é relevante?
+### Modelo Escolhido: Logistic Regression
 
-**Exemplo**: *"Nosso projeto se insere no contexto do mercado imobiliário, onde a precificação de imóveis é um desafio complexo..."*
+Para o problema de **churn**, priorizamos o **Recall** porque:
+- ❌ **Falso Negativo** (não prever churn de quem vai sair): Perda definitiva do cliente
+- ✅ **Falso Positivo** (prever churn de quem ia ficar): Custo menor, cliente ainda retido
 
-#### 1.2. Apresente a Pergunta de Negócio
-Declare de forma clara e específica a pergunta que guiou toda a análise.
-
-**Exemplo**: *"A pergunta central que buscamos responder foi: 'Quais características de um imóvel (como área, número de quartos e localização) têm o maior impacto em seu preço de venda?'"*
-
-#### 1.3. Defina o Objetivo do Modelo
-Explique o que o modelo preditivo se propõe a fazer.
-
-**Exemplo**: *"O objetivo foi construir um modelo de regressão capaz de estimar o preço de um imóvel com base em suas características, fornecendo uma ferramenta de apoio para corretores e proprietários."*
+A Logistic Regression apresentou o melhor equilíbrio entre as métricas, com maior Recall.
 
 ---
 
-### **Parte 2: A Jornada dos Dados - Pipeline e Arquitetura** (1,0 ponto)
+## 🚀 Como Executar Este Projeto
 
-Descreva o caminho completo que os dados percorreram. **Uso de fluxograma ou diagrama visual é fortemente recomendado.**
+### Pré-requisitos
 
-#### 2.1. Origem e Repositório de Dados
+- Python 3.8 ou superior
+- pip (gerenciador de pacotes Python)
 
-- **Fonte Original**: Identifique a origem dos dados (ex: API, Kaggle, dados abertos do governo)
-- **Arquitetura de Armazenamento**: Descreva e justifique a escolha
-  - Data Lake (dados brutos)
-  - Data Warehouse (dados tratados)
-  - Data Lakehouse
+### Instalação
 
-#### 2.2. Pipeline de Dados
+```bash
+# Clone o repositório
+git clone https://github.com/pedrohdcosta/CienciaDeDadosN3.git
+cd CienciaDeDadosN3
 
-Explique passo a passo o fluxo de processamento:
+# Crie um ambiente virtual (recomendado)
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+# ou
+venv\Scripts\activate  # Windows
 
-1. **Ingestão**: Como os dados foram coletados e armazenados?
-2. **Limpeza e Transformação (ETL/ELT)**: 
-   - Tratamento de valores ausentes
-   - Padronização de formatos
-   - Remoção de duplicatas
-3. **Análise Exploratória (EDA)**: Como a EDA ajudou a entender os dados e selecionar variáveis?
-4. **Preparação para Modelagem**:
-   - Seleção de features
-   - One-Hot Encoding / get_dummies
-   - Divisão treino/teste
-
----
-
-### **Parte 3: O Coração do Projeto - Modelagem e Avaliação Comparativa** (6,0 pontos)
-
-Esta é a **parte central do trabalho**. Demonstre capacidade de treinar, comparar e avaliar criticamente diferentes modelos.
-
-#### 3.1. Treinamento de Três Modelos
-
-Escolha e treine **pelo menos 3 algoritmos diferentes**:
-
-**Para Classificação:**
-- Árvore de Decisão
-- Regressão Logística
-- Random Forest
-- KNN
-- SVM
-
-**Para Regressão:**
-- Regressão Linear
-- Ridge
-- Lasso
-- Árvore de Decisão para Regressão
-
-#### 3.2. Avaliação com Três Métricas
-
-Escolha **pelo menos 3 métricas** de desempenho:
-
-**Para Classificação:**
-- Acurácia
-- Precisão
-- Recall
-- F1-Score
-
-**Para Regressão:**
-- RMSE (Root Mean Squared Error)
-- MAE (Mean Absolute Error)
-- R² (R-squared)
-
-**⚠️ IMPORTANTE**: Explique cada métrica escolhida antes de apresentar os resultados.
-
-**Exemplo**: *"Para nosso problema de fraude, o Recall é crucial, pois mede a capacidade do modelo de encontrar todas as fraudes reais, mesmo que isso gere alguns alarmes falsos..."*
-
-#### 3.3. Análise Comparativa dos Resultados
-
-- Apresente os resultados em **tabela comparativa**
-- Discuta: Qual modelo obteve melhor performance geral?
-- Houve modelo que se destacou em métrica específica?
-- **Justifique**: Com base na análise e no objetivo de negócio, qual modelo você escolheria e por quê?
-
----
-
-### **Parte 4: Tornando o Modelo Útil - Deploy** (2,0 pontos)
-
-Demonstre que seu modelo pode ser reutilizado para fazer novas previsões.
-
-#### 4.1. Salvando o Modelo Treinado
-
-Mostre o código para salvar o modelo usando `pickle` ou `joblib`:
-
-```python
-import joblib
-joblib.dump(meu_melhor_modelo, 'modelo_final.pkl')
+# Instale as dependências
+pip install -r requirements.txt
 ```
 
-#### 4.2. Carregando e Utilizando o Modelo
+### Executando o Notebook
 
-- Carregue o arquivo do modelo salvo
-- Crie um exemplo de **novo dado** (entrada que o modelo nunca viu)
-- Use o modelo para fazer uma previsão
-- Apresente e explique o resultado
+```bash
+# Inicie o Jupyter Notebook
+jupyter notebook notebooks/01_projeto_telco_churn.ipynb
+```
 
-**Exemplo**: *"Carregamos nosso modelo de preços e, para um novo imóvel com estas características, ele previu um preço de R$ X."*
+### Usando o Script de Deploy
+
+```bash
+# Execute o script de demonstração
+cd scripts
+python deploy_model.py
+```
 
 ---
 
-## 📌 Resumo da Avaliação
+## 📈 Pipeline de Dados
+
+```
+┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+│  INGESTÃO   │ => │   LIMPEZA   │ => │     EDA     │ => │ PREPARAÇÃO  │
+│  CSV Load   │    │  Transform  │    │  Análise    │    │  Encoding   │
+└─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
+```
+
+1. **Ingestão**: Carregamento do CSV do Telco Customer Churn
+2. **Limpeza**: Conversão de TotalCharges para numérico, remoção de valores ausentes
+3. **EDA**: Análise de distribuições, correlações e visualizações
+4. **Preparação**: One-Hot Encoding e divisão treino/teste (80/20)
+
+---
+
+## 📋 Dataset
+
+- **Nome**: Telco Customer Churn
+- **Fonte**: IBM Sample Data Sets / Kaggle
+- **Registros**: 7.043 clientes
+- **Colunas**: 21 variáveis
+
+### Variáveis Principais
+
+| Tipo | Variáveis |
+|------|-----------|
+| **Demográficas** | gender, SeniorCitizen, Partner, Dependents |
+| **Serviços** | PhoneService, InternetService, OnlineSecurity, TechSupport |
+| **Conta** | Contract, PaperlessBilling, PaymentMethod |
+| **Métricas** | tenure, MonthlyCharges, TotalCharges |
+| **Target** | Churn (Yes/No) |
+
+---
+
+## 📌 Estrutura da Avaliação N3
 
 | Parte | Descrição | Pontuação |
 |-------|-----------|-----------|
@@ -173,36 +142,21 @@ joblib.dump(meu_melhor_modelo, 'modelo_final.pkl')
 
 ---
 
-## 🚀 Como Executar Este Projeto
-
-*(Esta seção será preenchida com instruções específicas do seu projeto)*
-
-```bash
-# Clone o repositório
-git clone https://github.com/pedrohdcosta/CienciaDeDadosN3.git
-
-# Instale as dependências
-pip install -r requirements.txt
-
-# Execute os notebooks
-jupyter notebook notebooks/
-```
-
----
-
 ## 👥 Equipe
 
 - Pedro Henrique Costa (@pedrohdcosta)
-- *[Adicione outros membros aqui]*
 
 ---
 
 ## 📚 Referências
 
-- Dataset: *[Adicione a fonte do seu dataset]*
-- Documentação Scikit-learn: https://scikit-learn.org/
-- *[Outras referências utilizadas]*
+- **Dataset**: [Telco Customer Churn - Kaggle](https://www.kaggle.com/datasets/blastchar/telco-customer-churn)
+- **Documentação Scikit-learn**: https://scikit-learn.org/
+- **Pandas Documentation**: https://pandas.pydata.org/
+- **Seaborn Documentation**: https://seaborn.pydata.org/
 
 ---
 
-**Boa sorte! 🎓**
+## 📄 Licença
+
+Este projeto foi desenvolvido para fins educacionais como parte da avaliação N3 de Ciência de Dados.
