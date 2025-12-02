@@ -1,0 +1,33 @@
+# ====================================================
+# Dependências do Projeto de Churn - Telecomunicações
+# ====================================================
+
+# Core Data Science
+pandas>=1.5.0
+numpy>=1.23.0
+scikit-learn>=1.2.0
+
+# Visualização
+matplotlib>=3.6.0
+seaborn>=0.12.0
+
+# Persistência de Modelos
+joblib>=1.2.0
+
+# Jupyter Notebooks (opcional, para desenvolvimento)
+jupyter>=1.0.0
+notebook>=6.5.0
+ipykernel>=6.20.0
+
+# API/Deploy (opcional, para produção)
+flask>=2.3.0
+fastapi>=0.95.0
+uvicorn>=0.21.0
+
+# Utilities
+python-dateutil>=2.8.0
+pytz>=2023.3
+
+# Testing (opcional)
+pytest>=7.2.0
+pytest-cov>=4.0.0
