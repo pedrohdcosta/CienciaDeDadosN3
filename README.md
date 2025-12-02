@@ -27,11 +27,14 @@ O trabalho deve ser entregue como um **link para repositório no GitHub** com a 
 ```
 📦 CienciaDeDadosN3/
 ├── 📄 README.md                # O "rosto" do projeto - explica problema, estrutura e execução
+├── 📁 atividades/              # Conjunto das atividades anteriores
+├── 📁 dataset/                 # Dataset(s) utilizado(s)
+├── 📁 doc/                     # Documentos com explicação
 ├── 📁 notebooks/               # Jupyter Notebooks de exploração e modelagem
-├── 📁 data/                    # Dataset(s) utilizado(s)
 ├── 📁 scripts/                 # Scripts de deploy ou funções auxiliares
-├── 📄 requirements.txt         # Arquivo de dependências Python
-└── 📄 modelo_final.pkl         # Modelo treinado e salvo
+├── 📁 test/                    # Repositorio com os arquivos de teste
+    └── 📄 modelo_final.pkl     # Modelo treinado e salvo
+└── 📄 requirements.txt         # Arquivo de dependências Python
 ```
 
 ---
