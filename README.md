@@ -192,17 +192,12 @@ jupyter notebook notebooks/
 
 ## 👥 Equipe
 
-- Pedro Henrique Costa (@pedrohdcosta)
-- *[Adicione outros membros aqui]*
+- Pedro Henrique Dias da Costa
+- Gustavo Schinieder Rodrigues
 
 ---
 
 ## 📚 Referências
 
-- Dataset: *[Adicione a fonte do seu dataset]*
-- Documentação Scikit-learn: https://scikit-learn.org/
-- *[Outras referências utilizadas]*
-
+A documentação está localizada no repositorio CienciaDeDadosN3/doc
 ---
-
-**Boa sorte! 🎓**
