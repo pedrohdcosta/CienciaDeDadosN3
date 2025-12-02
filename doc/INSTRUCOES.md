@@ -1,12 +1,12 @@
-# 📖 Instruções de Execução do Projeto
+# Instruções de Execução do Projeto
 
-## 🎯 Objetivo
+## Objetivo
 
 Este documento contém o **passo a passo completo** para executar o projeto de previsão de churn desde a instalação até a apresentação final.
 
 ---
 
-## 📋 Checklist Rápido
+## Checklist Rápido
 
 - [ ] Python 3.8+ instalado
 - [ ] Ambiente virtual criado
@@ -19,7 +19,7 @@ Este documento contém o **passo a passo completo** para executar o projeto de p
 
 ---
 
-## 🚀 Passo 1: Configuração do Ambiente
+## Passo 1: Configuração do Ambiente
 
 ### 1.1 Verificar Python
 
@@ -62,12 +62,12 @@ pip install -r requirements.txt
 ### 1.4 Verificar Instalação
 
 ```bash
-python -c "import pandas, sklearn, matplotlib; print('✅ Tudo OK!')"
+python -c "import pandas, sklearn, matplotlib; print('Tudo OK!')"
 ```
 
 ---
 
-## 📊 Passo 2: Executar a Análise Exploratória (EDA)
+## Passo 2: Executar a Análise Exploratória (EDA)
 
 ### 2.1 Abrir Jupyter Notebook
 
@@ -84,24 +84,24 @@ Isso abrirá o navegador automaticamente.
 3. Ou execute tudo: `Cell > Run All`
 
 **O que você vai ver:**
-- ✅ Carregamento e limpeza dos dados
-- ✅ Estatísticas descritivas
-- ✅ Análise de valores ausentes
-- ✅ Distribuição do target (Churn)
-- ✅ Análise de correlações
-- ✅ Visualizações (gráficos)
-- ✅ Seleção de features
+- Carregamento e limpeza dos dados
+- Estatísticas descritivas
+- Análise de valores ausentes
+- Distribuição do target (Churn)
+- Análise de correlações
+- Visualizações (gráficos)
+- Seleção de features
 
 **Tempo estimado:** 10-15 minutos
 
-**⚠️  Atenção:**
+**ATENÇÃO:**
 - Não modifique as células de limpeza de dados
 - Anote os insights principais para o relatório
 - Salve o notebook após execução
 
 ---
 
-## 🤖 Passo 3: Treinar e Comparar Modelos
+## Passo 3: Treinar e Comparar Modelos
 
 ### 3.1 Executar `notebooks/02_modelagem_comparativa.ipynb`
 
@@ -110,17 +110,17 @@ Isso abrirá o navegador automaticamente.
 3. Observe os resultados de cada modelo
 
 **O que você vai ver:**
-- ✅ Preparação dos dados (encoding, train/test split)
-- ✅ Treinamento de 5 modelos diferentes
-- ✅ Comparação de métricas (Acurácia, Precisão, Recall, F1)
-- ✅ Matriz de confusão
-- ✅ Feature importance
-- ✅ Análise de ROI
-- ✅ Salvamento do melhor modelo
+- Preparação dos dados (encoding, train/test split)
+- Treinamento de 5 modelos diferentes
+- Comparação de métricas (Acurácia, Precisão, Recall, F1)
+- Matriz de confusão
+- Feature importance
+- Análise de ROI
+- Salvamento do melhor modelo
 
 **Tempo estimado:** 15-20 minutos
 
-**📌 IMPORTANTE:**
+**IMPORTANTE:**
 Este notebook salva automaticamente:
 - `modelo_final.pkl` (modelo treinado)
 - `feature_columns.pkl` (nomes das features)
@@ -130,7 +130,7 @@ Este notebook salva automaticamente:
 
 ---
 
-## 🚀 Passo 4: Testar o Deploy
+## Passo 4: Testar o Deploy
 
 ### 4.1 Executar `notebooks/03_deploy_exemplo.ipynb`
 
@@ -139,21 +139,21 @@ Este notebook salva automaticamente:
 3. Teste com seus próprios exemplos
 
 **O que você vai ver:**
-- ✅ Carregamento do modelo salvo
-- ✅ Função de predição reutilizável
-- ✅ Exemplos de clientes (alto, médio e baixo risco)
-- ✅ Análise em lote
-- ✅ Simulação de intervenções
-- ✅ Código para produção
+- Carregamento do modelo salvo
+- Função de predição reutilizável
+- Exemplos de clientes (alto, médio e baixo risco)
+- Análise em lote
+- Simulação de intervenções
+- Código para produção
 
 **Tempo estimado:** 10 minutos
 
-**💡 Dica:**
+**Dica:**
 Modifique os exemplos de clientes para testar diferentes cenários!
 
 ---
 
-## 📦 Passo 5: Organizar Arquivos para Entrega
+## Passo 5: Organizar Arquivos para Entrega
 
 ### 5.1 Estrutura Final do Projeto
 
@@ -162,7 +162,7 @@ Seu projeto deve ter esta estrutura:
 ```
 churn-telecom-project/
 │
-├── README.md                    # ⭐ Relatório principal
+├── README.md                    # Relatório principal
 ├── requirements.txt             # Dependências
 │
 ├── notebooks/
@@ -176,14 +176,14 @@ churn-telecom-project/
 ├── data/
 │   └── (opcional - dataset baixado automaticamente)
 │
-├── modelo_final.pkl            # ⭐ Modelo treinado
+├── modelo_final.pkl            # Modelo treinado
 ├── feature_columns.pkl         # Features usadas
 └── scaler.pkl                  # (se aplicável)
 ```
 
 ### 5.2 Verificar Arquivos Essenciais
 
-✅ Certifique-se de que você tem:
+Certifique-se de que você tem:
 - [ ] README.md completo e revisado
 - [ ] 3 notebooks executados (com outputs visíveis)
 - [ ] modelo_final.pkl
@@ -192,7 +192,7 @@ churn-telecom-project/
 
 ---
 
-## 🌐 Passo 6: Criar Repositório no GitHub
+## Passo 6: Criar Repositório no GitHub
 
 ### 6.1 Criar Repositório
 
@@ -226,7 +226,7 @@ git push -u origin main
 
 ### 6.3 Verificar no GitHub
 
-✅ Acesse seu repositório e verifique:
+Acesse seu repositório e verifique:
 - [ ] README.md está renderizado corretamente
 - [ ] Notebooks estão visíveis com outputs
 - [ ] Todos os arquivos foram enviados
@@ -234,7 +234,7 @@ git push -u origin main
 
 ---
 
-## 📝 Passo 7: Preparar para Apresentação/Entrega
+## Passo 7: Preparar para Apresentação/Entrega
 
 ### 7.1 Revisar README.md
 
@@ -265,7 +265,7 @@ jupyter notebook
 
 ### 7.3 Checklist de Entrega
 
-✅ Antes de entregar, verifique:
+Antes de entregar, verifique:
 
 **Parte 1: Problema de Negócio (1,0 ponto)**
 - [ ] Domínio do problema descrito
@@ -279,8 +279,8 @@ jupyter notebook
 - [ ] EDA explicada
 
 **Parte 3: Modelagem (6,0 pontos)**
-- [ ] 3+ modelos treinados ✅ (temos 5!)
-- [ ] 3+ métricas calculadas ✅ (temos 4!)
+- [ ] 3+ modelos treinados (temos 5!)
+- [ ] 3+ métricas calculadas (temos 4!)
 - [ ] Métricas explicadas
 - [ ] Análise comparativa detalhada
 - [ ] Melhor modelo justificado
@@ -299,7 +299,7 @@ jupyter notebook
 
 ---
 
-## 🎯 Passo 8: Entrega
+## Passo 8: Entrega
 
 ### 8.1 Link do GitHub
 
@@ -314,13 +314,13 @@ Envie o link via **MS Teams** conforme instruções do professor.
 
 ### 8.3 Prazo
 
-⏰ **Data limite:** 01 de dezembro de 2025, 23h59min
+**Data limite:** 01 de dezembro de 2025, 23h59min
 
-⚠️ **Atenção:** Atraso = -1,0 ponto por hora!
+**Atenção:** Atraso = -1,0 ponto por hora!
 
 ---
 
-## 🆘 Troubleshooting (Solução de Problemas)
+## Troubleshooting (Solução de Problemas)
 
 ### Problema: "ModuleNotFoundError"
 
@@ -357,7 +357,7 @@ jupyter notebook
 
 ---
 
-## 💡 Dicas Finais
+## Dicas Finais
 
 ### Para um Projeto Excelente:
 
@@ -392,7 +392,7 @@ jupyter notebook
 
 ---
 
-## 📞 Precisa de Ajuda?
+## Precisa de Ajuda?
 
 Se tiver dúvidas durante a execução:
 
@@ -403,13 +403,13 @@ Se tiver dúvidas durante a execução:
 
 ---
 
-## ✅ Conclusão
+## Conclusão
 
 Seguindo este guia passo a passo, você terá um projeto completo e profissional de Ciência de Dados!
 
 **Tempo total estimado:** 2-3 horas (incluindo revisões)
 
-**Boa sorte na apresentação! 🚀**
+**Boa sorte na apresentação!**
 
 ---
 
