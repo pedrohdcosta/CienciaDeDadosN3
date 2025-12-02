@@ -178,17 +178,141 @@ joblib.dump(meu_melhor_modelo, 'modelo_final.pkl')
 
 ## 🚀 Como Executar Este Projeto
 
-*(Esta seção será preenchida com instruções específicas do seu projeto)*
+### Instalação
 
 ```bash
 # Clone o repositório
 git clone https://github.com/pedrohdcosta/CienciaDeDadosN3.git
+cd CienciaDeDadosN3
 
 # Instale as dependências
 pip install -r requirements.txt
+```
 
-# Execute os notebooks
+### Executar os Notebooks
+
+```bash
+# Execute os notebooks de análise
 jupyter notebook notebooks/
+```
+
+### 🌐 Executar a API Localmente
+
+A API de predição de churn pode ser executada localmente através de endpoints REST.
+
+```bash
+# Iniciar a API
+uvicorn api.app:app --host 0.0.0.0 --port 8000
+```
+
+A API estará disponível em `http://localhost:8000`
+
+#### Documentação Interativa
+
+Acesse a documentação automática da API:
+- **Swagger UI**: http://localhost:8000/docs
+- **ReDoc**: http://localhost:8000/redoc
+
+#### Endpoints Disponíveis
+
+| Endpoint | Método | Descrição |
+|----------|--------|-----------|
+| `/health` | GET | Verifica status da API e se o modelo está carregado |
+| `/predict` | POST | Predição de churn para um único cliente |
+| `/predict/batch` | POST | Predição de churn para múltiplos clientes |
+
+#### Exemplos de Uso
+
+**Verificar Status da API:**
+```bash
+curl http://localhost:8000/health
+```
+
+**Predição para um Cliente:**
+```bash
+curl -X POST http://localhost:8000/predict \
+  -H "Content-Type: application/json" \
+  -d '{
+    "tenure": 12,
+    "MonthlyCharges": 75.00,
+    "TotalCharges": 900.00,
+    "Contract": "Month-to-month",
+    "InternetService": "DSL",
+    "PaymentMethod": "Electronic check",
+    "OnlineSecurity": "No",
+    "TechSupport": "No",
+    "PaperlessBilling": "Yes",
+    "SeniorCitizen": 0
+  }'
+```
+
+**Resposta Esperada:**
+```json
+{
+  "predicao": "No",
+  "probabilidade_churn": 0.3521,
+  "nivel_risco": "BAIXO",
+  "acao_recomendada": "MANTER: Cliente estável, continuar comunicação regular e programa de fidelidade"
+}
+```
+
+**Predição em Lote:**
+```bash
+curl -X POST http://localhost:8000/predict/batch \
+  -H "Content-Type: application/json" \
+  -d '{
+    "clientes": [
+      {
+        "tenure": 2,
+        "MonthlyCharges": 89.99,
+        "TotalCharges": 179.98,
+        "Contract": "Month-to-month",
+        "InternetService": "Fiber optic",
+        "PaymentMethod": "Electronic check",
+        "OnlineSecurity": "No",
+        "TechSupport": "No",
+        "PaperlessBilling": "Yes",
+        "SeniorCitizen": 0
+      },
+      {
+        "tenure": 60,
+        "MonthlyCharges": 55.00,
+        "TotalCharges": 3300.00,
+        "Contract": "Two year",
+        "InternetService": "DSL",
+        "PaymentMethod": "Credit card (automatic)",
+        "OnlineSecurity": "Yes",
+        "TechSupport": "Yes",
+        "PaperlessBilling": "No",
+        "SeniorCitizen": 1
+      }
+    ]
+  }'
+```
+
+#### Campos de Entrada
+
+| Campo | Tipo | Descrição | Valores Aceitos |
+|-------|------|-----------|-----------------|
+| `tenure` | int | Meses como cliente | 0-120 |
+| `MonthlyCharges` | float | Valor mensal (R$) | ≥ 0 |
+| `TotalCharges` | float | Total gasto (R$) | ≥ 0 |
+| `Contract` | string | Tipo de contrato | "Month-to-month", "One year", "Two year" |
+| `InternetService` | string | Serviço de internet | "DSL", "Fiber optic", "No" |
+| `PaymentMethod` | string | Método de pagamento | "Electronic check", "Mailed check", "Bank transfer (automatic)", "Credit card (automatic)" |
+| `OnlineSecurity` | string | Segurança online | "Yes", "No", "No internet service" |
+| `TechSupport` | string | Suporte técnico | "Yes", "No", "No internet service" |
+| `PaperlessBilling` | string | Fatura digital | "Yes", "No" |
+| `SeniorCitizen` | int | É idoso | 0, 1 |
+
+### Executar Testes
+
+```bash
+# Executar testes da API
+python -m pytest test/test_api.py -v
+
+# Testar modelo manualmente
+python test/test_pkl_model.py
 ```
 
 ---
