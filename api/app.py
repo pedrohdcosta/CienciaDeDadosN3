@@ -33,8 +33,12 @@ def carregar_modelo():
     global modelo, feature_columns, scaler
     
     if modelo is None:
-        modelo = joblib.load(MODEL_PATH)
-        feature_columns = joblib.load(FEATURES_PATH)
+        try:
+            modelo = joblib.load(MODEL_PATH)
+            feature_columns = joblib.load(FEATURES_PATH)
+        except FileNotFoundError as e:
+            raise RuntimeError(f"Erro ao carregar modelo: {e}. Certifique-se que os arquivos .pkl existem em {os.path.dirname(MODEL_PATH)}")
+        
         try:
             scaler = joblib.load(SCALER_PATH)
         except FileNotFoundError:
